@@ -1,34 +1,67 @@
 angular.module('app.controllers', [])
-     
-.controller('searchCtrl', function($scope) {
+   
+.controller('sidebarCtrl', ['$state', 'Auth', function($state, Auth) {
+	this.isLogged = Auth.isLogged;
+	this.currentUser = Auth.getCurrentUser();
+	
+	this.logout = function() {
+		Auth.logout();
+	};
+}])
+  
+.controller('searchCtrl', function() {
 
 })
    
-.controller('resultsCtrl', function($scope) {
+.controller('resultsCtrl', function() {
 
 })
 
-.controller('offersCtrl', function($scope) {
-
-})
-   
-.controller('bookmarksCtrl', function($scope) {
+.controller('offersCtrl', function() {
 
 })
    
-.controller('loginCtrl', function($scope) {
+.controller('bookmarksCtrl', function() {
 
 })
    
-.controller('signupCtrl', function($scope) {
-
-})
+.controller('loginCtrl', ['$state', 'Auth', function($state, Auth) {
+	this.userData = {
+		username: '',
+		password: ''
+	};
+	
+	this.login = function () {
+		Auth.login(this.userData)
+			.then(function (user) {
+				console.log('Successfully logged in: ', user);
+				$state.go('app.search');
+			});
+	};
+}])
    
-.controller('detailsCtrl', function($scope) {
+.controller('signupCtrl', ['$state', 'Auth', function($state, Auth) {
+	this.userData = {
+		username: '',
+		password: '',
+		name: '',
+		email: ''
+	};
+	
+	this.signup = function () {
+		Auth.signup(this.userData)
+			.then(function (user) {
+				console.log('Successfully signed up: ', user);
+				$state.go('app.search');
+			});
+	};
+}])
+   
+.controller('detailsCtrl', function() {
 
 })
 
-.controller('profileCtrl', function($scope) {
+.controller('profileCtrl', function() {
 
 });
  

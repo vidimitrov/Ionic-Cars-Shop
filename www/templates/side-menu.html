@@ -12,14 +12,18 @@
         <ion-header-bar class="bar-balanced">
             <div class="title">Ionic Cars Shop</div>
         </ion-header-bar>
-        <ion-content padding="false" class="side-menu-left has-header" <="" ion-content="">
-            <ion-list>
+        <ion-header-bar class="bar-subheader bar-balanced" ng-if="ctrl.isLogged()">
+            <div class="text-center">Hello, {{ ctrl.currentUser.get('name') }}</div>
+        </ion-header-bar>
+        <ion-content class="side-menu-left has-header" <="" ion-content="">
+            <ion-list class="sidebar-list">
                 <ion-item href="#/app/search" menu-close="">Search</ion-item>
                 <ion-item href="#/app/bookmarks" menu-close="">Bookmarks</ion-item>
-                <ion-item href="#/app/login" menu-close="">Login</ion-item>
-                <ion-item href="#/app/signup" menu-close="">Sign Up</ion-item>
-                <ion-item href="#/app/profile" menu-close="">My Profile</ion-item>
-                <ion-item href="#/app/offers" menu-close="">My Offers</ion-item>
+                <ion-item href="#/app/login" menu-close="" ng-hide="ctrl.isLogged()">Login</ion-item>
+                <ion-item href="#/app/signup" menu-close="" ng-hide="ctrl.isLogged()">Sign Up</ion-item>
+                <ion-item href="#/app/profile" menu-close="" ng-show="ctrl.isLogged()">My Profile</ion-item>
+                <ion-item href="#/app/offers" menu-close="" ng-show="ctrl.isLogged()">My Offers</ion-item>
+                <ion-item ng-click="ctrl.logout()" menu-close="" ng-show="ctrl.isLogged()">Logout</ion-item>
             </ion-list>
         </ion-content>
     </ion-side-menu>

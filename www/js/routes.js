@@ -10,7 +10,8 @@ angular.module('app.routes', [])
     .state('app', {
       url: '/app',
       abstract:true,
-      templateUrl: 'templates/side-menu.html'
+      templateUrl: 'templates/side-menu.html',
+      controller: 'sidebarCtrl as ctrl'
     })
       
     .state('app.search', {
@@ -58,7 +59,7 @@ angular.module('app.routes', [])
       views: {
         'app': {
           templateUrl: 'templates/login.html',
-          controller: 'loginCtrl'
+          controller: 'loginCtrl as ctrl'
         }
       }
     })
@@ -68,7 +69,7 @@ angular.module('app.routes', [])
       views: {
         'app': {
           templateUrl: 'templates/signup.html',
-          controller: 'signupCtrl'
+          controller: 'signupCtrl as ctrl'
         }
       }
     })
