@@ -7,87 +7,82 @@ angular.module('app.routes', [])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-    
-      
-    .state('ionicCarsShop', {
-      url: '/menu',
+    .state('app', {
+      url: '/app',
       abstract:true,
-      templateUrl: 'templates/ionicCarsShop.html'
+      templateUrl: 'templates/side-menu.html'
     })
       
-    
-      
-        
-    .state('ionicCarsShop.search', {
+    .state('app.search', {
       url: '/search',
       views: {
-        'side-menu21': {
+        'app': {
           templateUrl: 'templates/search.html',
           controller: 'searchCtrl'
         }
       }
     })
-        
-      
-    
-      
-        
-    .state('ionicCarsShop.highlights', {
-      url: '/highlights',
+          
+    .state('app.results', {
+      url: '/results',
       views: {
-        'side-menu21': {
-          templateUrl: 'templates/highlights.html',
-          controller: 'highlightsCtrl'
+        'app': {
+          templateUrl: 'templates/results.html',
+          controller: 'resultsCtrl'
         }
       }
     })
-        
-      
     
-      
-        
-    .state('ionicCarsShop.bookmarks', {
+    .state('app.offers', {
+      url: '/offers',
+      views: {
+        'app': {
+          templateUrl: 'templates/offers.html',
+          controller: 'offersCtrl'
+        }
+      }
+    })
+         
+    .state('app.bookmarks', {
       url: '/bookmarks',
       views: {
-        'side-menu21': {
+        'app': {
           templateUrl: 'templates/bookmarks.html',
           controller: 'bookmarksCtrl'
         }
       }
     })
-        
-      
-    
-      
-        
-    .state('ionicCarsShop.login', {
+         
+    .state('app.login', {
       url: '/login',
       views: {
-        'side-menu21': {
+        'app': {
           templateUrl: 'templates/login.html',
           controller: 'loginCtrl'
         }
       }
     })
-        
-      
-    
-      
-        
-    .state('ionicCarsShop.signup', {
+          
+    .state('app.signup', {
       url: '/signup',
       views: {
-        'side-menu21': {
+        'app': {
           templateUrl: 'templates/signup.html',
           controller: 'signupCtrl'
         }
       }
     })
-        
-      
     
-      
-        
+    .state('app.profile', {
+      url: '/profile',
+      views: {
+        'app': {
+          templateUrl: 'templates/profile.html',
+          controller: 'profileCtrl'
+        }
+      }
+    })
+         
     .state('details', {
       url: '/details',
       templateUrl: 'templates/details.html',
@@ -98,6 +93,6 @@ angular.module('app.routes', [])
     ;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/menu/search');
+  $urlRouterProvider.otherwise('/app/search');
 
 });

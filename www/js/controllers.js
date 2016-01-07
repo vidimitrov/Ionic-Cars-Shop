@@ -4,7 +4,11 @@ angular.module('app.controllers', [])
 
 })
    
-.controller('highlightsCtrl', function($scope) {
+.controller('resultsCtrl', function($scope) {
+
+})
+
+.controller('offersCtrl', function($scope) {
 
 })
    
@@ -23,4 +27,8 @@ angular.module('app.controllers', [])
 .controller('detailsCtrl', function($scope) {
 
 })
+
+.controller('profileCtrl', function($scope) {
+
+});
  
