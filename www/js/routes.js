@@ -43,6 +43,16 @@ angular.module('app.routes', [])
         }
       }
     })
+    
+    .state('app.create-offer', {
+      url: '/create-offer',
+      views: {
+        'app': {
+          templateUrl: 'templates/create-offer.html',
+          controller: 'createOfferCtrl as ctrl'
+        }
+      }
+    })
          
     .state('app.bookmarks', {
       url: '/bookmarks',

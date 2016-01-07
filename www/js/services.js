@@ -86,5 +86,48 @@ angular.module('app.services', [])
 		isLogged: isLogged,
 		getCurrentUser: getCurrentUser
 	};
+}])
+
+.factory('OffersResource', ['$q', function ($q) {
+	
+	function query () {
+		
+	}
+	
+	function create (offerData) {
+		console.log('Creating offer: ', offerData);
+		
+		var deferred = $q.defer();
+		
+		var Offer = Parse.Object.extend('Offer');
+		var offer = new Offer();
+		
+		offer.set('title', offerData.title);
+		offer.set('description', offerData.description);
+		offer.set('make', offerData.make);
+		offer.set('model', offerData.model);
+		offer.set('year', offerData.year);
+		offer.set('price', offerData.price);
+		offer.set('mileage', offerData.mileage);
+		offer.set('fuel', offerData.fuel);
+		offer.set('country', offerData.country);
+		
+		offer.save(null, {
+			success: function (savedOffer) {
+				deferred.resolve(savedOffer);
+			},
+			error: function (offer, error) {
+				deferred.reject(error);
+			}
+		});
+		
+		return deferred.promise;
+	}
+	
+	return {
+		query: query,
+		create: create
+	};
+	
 }]);
 

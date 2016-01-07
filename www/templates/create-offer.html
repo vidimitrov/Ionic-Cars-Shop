@@ -1,0 +1,47 @@
+<ion-view title="Create offer">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <form class="list" ng-submit="ctrl.createOffer()">
+            <ion-list>
+                <label class="item item-input" name="offer-title">
+                    <span class="input-label">Title</span>
+                    <input type="text" placeholder="" ng-model="ctrl.offer.title">
+                </label>
+                <label class="item item-select" name="car-make">
+                    <span class="input-label">Make</span>
+                    <select ng-model="ctrl.offer.make"
+                            ng-options="make for make in ctrl.makes">
+                    </select>
+                </label>
+                <label class="item item-select" name="car-model">
+                    <span class="input-label">Model</span>
+                    <select ng-model="ctrl.offer.model"></select>
+                </label>
+                <label class="item item-select" name="car-year">
+                    <span class="input-label">Year</span>
+                    <select ng-model="ctrl.offer.year" ng-options="year for year in ctrl.years"></select>
+                </label>
+                <label class="item item-select" name="car-price">
+                    <span class="input-label">Price</span>
+                    <input type="number" ng-model="ctrl.offer.price">
+                </label>
+                <label class="item item-select" name="car-mileage">
+                    <span class="input-label">Mileage</span>
+                    <input type="number" ng-model="ctrl.offer.mileage">
+                </label>
+                <label class="item item-select" name="car-fuel">
+                    <span class="input-label">Fuel type</span>
+                    <select ng-model="ctrl.offer.fuel" ng-options="fuel for fuel in ctrl.fuelTypes"></select>
+                </label>
+                <label class="item item-select" name="car-country">
+                    <span class="input-label">Country</span>
+                    <select ng-model="ctrl.offer.country" ng-options="country for country in ctrl.countries"></select>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Description</span>
+                    <textarea placeholder="" ng-model="ctrl.offer.description"></textarea>
+                </label>
+            </ion-list>
+            <button type="submit" class="button button-balanced button-full">Create</button>
+        </form>
+    </ion-content>
+</ion-view>
