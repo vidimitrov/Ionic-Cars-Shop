@@ -1,20 +1,25 @@
 <ion-view title="Details">
     <ion-content overflow-scroll="true" padding="true" class="has-header">
         <img src="img/dT0PynfAQ9q2am01X6hn_a155164_full_0.jpg" width="100%" height="auto" style="width: 100%; height: auto;">
-        <h1>Audi A4</h1>
-        <div>
-            <p>This car is just
-                <strong>amazing</strong>
-            </p>
-        </div>
+        <h1>{{ ctrl.offer.get('title') }}</h1>
+        <h3>{{ ctrl.offer.get('price') | currency }}</h3>
+        
         <div class="button-bar">
             <button class="button button-positive button-block  icon-left ion-ios-telephone-outline">Call us</button>
             <button class="button button-positive button-block  icon-left ion-ios-email-outline">Mail us</button>
         </div>
-        <div class="spacer" style="width: 283px; height: 34px;"></div>
-        <div class="list card">
-            <div class="item item-divider">Seller Information</div>
-            <div class="item item-body"></div>
+        <div>
+            <p>{{ ctrl.offer.get('description') }}</p>
+            
+            <div class="list card">
+                <div class="item item-divider">Car Details</div>
+                <div class="item item-body">
+                    <p>Year: {{ ctrl.offer.get('year') }}</p>
+                    <p>Fuel type: {{ ctrl.offer.get('fuel') }}</p>
+                    <p>Mileage: {{ ctrl.offer.get('mileage') }}</p>
+                    <p>Country: {{ ctrl.offer.get('country') }}</p>
+                </div>
+            </div>
         </div>
         <button class="button button-balanced button-block ">Bookmark</button>
         <button class="button button-energized button-block ">Watch</button>

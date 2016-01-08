@@ -146,6 +146,23 @@ angular.module('app.services', [])
 		return deferred.promise;
 	}
 	
+	function getById (offerId) {
+		var deferred = $q.defer();
+		var Offer = Parse.Object.extend('Offer');
+		var query = new Parse.Query(Offer);
+		
+		query.get(offerId, {
+			success: function (offer) {
+				deferred.resolve(offer);
+			},
+			error: function (object, error) {
+				deferred.reject(error);
+			}
+		});
+		
+		return deferred.promise;
+	}
+	
 	function create (offerData) {
 		console.log('Creating offer: ', offerData);
 		
@@ -184,6 +201,7 @@ angular.module('app.services', [])
 	return {
 		query: query,
 		create: create,
+		getById: getById,
 		setParams: setParams
 	};
 	

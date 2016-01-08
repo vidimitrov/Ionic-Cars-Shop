@@ -7,10 +7,12 @@
             pulling-text="Loading..."
             on-refresh="ctrl.refresh()">
         </ion-refresher>
-        <ion-item class="item-thumbnail-left" collection-repeat="offer in ctrl.offers">
+        <ion-item class="item-thumbnail-left" collection-repeat="offer in ctrl.offers" ng-click="ctrl.viewDetails(offer)">
             <img src="img/iROMlN6TdCz3jw7fDmmI_a155164_full_0.jpg">
-            <h2>{{ offer.title }}</h2>
-            <p>{{ offer.year }} year, {{ offer.mileage }} km, {{ offer.fuel }}</p>
+            <h2>{{ offer.title }} - {{ offer.price | currency }}</h2>
+            <p>Year: {{ offer.year }}</p>
+            <p>Mileage: {{ offer.mileage }} km</p>
+            <p>Fuel: {{ offer.fuel }}</p>
         </ion-item>
     </ion-content>
 </ion-view>

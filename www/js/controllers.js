@@ -47,16 +47,32 @@ angular.module('app.controllers', [])
 		OffersResource.query()
 			.then(function (offers) {
 				self.offers = offers.map(function (offer) {
-					return offer._serverData;
+					var data = offer._serverData;
+					data.id = offer.id;
+					return data;
 				});
 				$scope.$broadcast('scroll.refreshComplete');
 			});
 	};
 	
+	this.isBookmarked = function (offer) {
+		// TODO: Implement bookmarked check
+		return false;
+	};
+	
+	this.bookmark = function (offer) {
+		// TODO: Implement bookmarking functionality
+		console.log('Bookmarking: ', offer);
+	};
+	
+	this.viewDetails = function (offer) {
+		$state.go('app.details', {id: offer.id});
+	};
+	
 	this.refresh();
 }])
 
-.controller('offersCtrl', ['$scope', 'OffersResource', 'Auth', function($scope, OffersResource, Auth) {
+.controller('offersCtrl', ['$scope', '$state', 'OffersResource', 'Auth', function($scope, $state, OffersResource, Auth) {
 	var self = this;
 	
 	this.refresh = function () {
@@ -65,10 +81,16 @@ angular.module('app.controllers', [])
 		OffersResource.query(params)
 		.then(function (offers) {
 			self.offers = offers.map(function (offer) {
-				return offer._serverData;
+				var data = offer._serverData;
+				data.id = offer.id;
+				return data;
 			});
 			$scope.$broadcast('scroll.refreshComplete');
 		});
+	};
+	
+	this.viewDetails = function (offer) {
+		$state.go('app.details', {id: offer.id});
 	};
 	
 	this.refresh();
@@ -109,7 +131,7 @@ angular.module('app.controllers', [])
 }])
    
 .controller('bookmarksCtrl', function() {
-
+	// TODO: Implement Bookmarks controller
 })
    
 .controller('loginCtrl', ['$state', 'Auth', function($state, Auth) {
@@ -144,11 +166,17 @@ angular.module('app.controllers', [])
 	};
 }])
    
-.controller('detailsCtrl', function() {
+.controller('detailsCtrl', ['$state', 'OffersResource', function($state, OffersResource) {
+	var self = this;
+	this.offerId = $state.params.id;
+	
+	OffersResource.getById(this.offerId)
+		.then(function (offer) {
+			self.offer = offer;
+		});
+}])
 
-})
-
-.controller('profileCtrl', function() {
-
-});
+.controller('profileCtrl', [function() {
+	// TODO: Implement My Profile controller
+}]);
  

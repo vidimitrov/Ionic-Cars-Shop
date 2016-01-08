@@ -18,11 +18,11 @@
         <ion-content class="side-menu-left has-header" <="" ion-content="">
             <ion-list class="sidebar-list">
                 <ion-item href="#/app/search" menu-close="">Search</ion-item>
-                <ion-item href="#/app/bookmarks" menu-close="">Bookmarks</ion-item>
-                <ion-item href="#/app/login" menu-close="" ng-hide="ctrl.isLogged()">Login</ion-item>
-                <ion-item href="#/app/signup" menu-close="" ng-hide="ctrl.isLogged()">Sign Up</ion-item>
+                <ion-item href="#/app/bookmarks" menu-close="" ng-show="ctrl.isLogged()">Bookmarks</ion-item>
                 <ion-item href="#/app/profile" menu-close="" ng-show="ctrl.isLogged()">My Profile</ion-item>
                 <ion-item href="#/app/offers" menu-close="" ng-show="ctrl.isLogged()">My Offers</ion-item>
+                <ion-item href="#/app/login" menu-close="" ng-hide="ctrl.isLogged()">Login</ion-item>
+                <ion-item href="#/app/signup" menu-close="" ng-hide="ctrl.isLogged()">Sign Up</ion-item>
                 <ion-item ng-click="ctrl.logout()" menu-close="" ng-show="ctrl.isLogged()">Logout</ion-item>
             </ion-list>
         </ion-content>

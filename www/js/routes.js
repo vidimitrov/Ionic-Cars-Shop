@@ -59,7 +59,7 @@ angular.module('app.routes', [])
       views: {
         'app': {
           templateUrl: 'templates/bookmarks.html',
-          controller: 'bookmarksCtrl'
+          controller: 'bookmarksCtrl as ctrl'
         }
       }
     })
@@ -89,15 +89,22 @@ angular.module('app.routes', [])
       views: {
         'app': {
           templateUrl: 'templates/profile.html',
-          controller: 'profileCtrl'
+          controller: 'profileCtrl as ctrl'
         }
       }
     })
          
-    .state('details', {
-      url: '/details',
-      templateUrl: 'templates/details.html',
-      controller: 'detailsCtrl'
+    .state('app.details', {
+      url: '/details/:id',
+      views: {
+        'app': {
+          templateUrl: 'templates/details.html',
+          controller: 'detailsCtrl as ctrl'
+        }
+      },
+      params: {
+        id: null
+      }
     })
         
       
