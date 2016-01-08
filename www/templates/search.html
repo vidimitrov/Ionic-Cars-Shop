@@ -6,33 +6,35 @@
         <form class="list">
             <label class="item item-select" name="car-make">
                 <span class="input-label">Make</span>
-                <select></select>
+                <select ng-model="ctrl.params.make"
+                        ng-options="make for make in ctrl.makes">
+                </select>
             </label>
             <label class="item item-select" name="car-model">
                 <span class="input-label">Model</span>
-                <select></select>
+                <select ng-model="ctrl.params.model"></select>
             </label>
             <label class="item item-select" name="car-year">
                 <span class="input-label">1st registration from</span>
-                <select></select>
+                <select ng-model="ctrl.params.firstRegistration" ng-options="year for year in ctrl.years"></select>
             </label>
             <label class="item item-select" name="car-price">
                 <span class="input-label">Price up to</span>
-                <select></select>
+                <input type="number" ng-model="ctrl.params.priceUpTo">
             </label>
             <label class="item item-select" name="car-mileage">
                 <span class="input-label">Mileage up to</span>
-                <select></select>
+                <input type="number" ng-model="ctrl.params.mileageUpTo">
             </label>
             <label class="item item-select" name="car-fuel">
                 <span class="input-label">Fuel type</span>
-                <select></select>
+                <select ng-model="ctrl.params.fuelType" ng-options="fuel for fuel in ctrl.fuelTypes"></select>
             </label>
             <label class="item item-select" name="car-country">
                 <span class="input-label">Country</span>
-                <select></select>
+                <select ng-model="ctrl.params.country" ng-options="country for country in ctrl.countries"></select>
             </label>
         </form>
-        <button class="button button-full button-balanced">Search</button>
+        <button class="button button-full button-balanced" ng-click="ctrl.search()">Search</button>
     </ion-content>
 </ion-view>

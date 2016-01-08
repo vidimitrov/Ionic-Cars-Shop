@@ -3,6 +3,14 @@
         <button class="button button-icon button-clear ion-plus" ui-sref="app.create-offer"></button>
     </ion-nav-buttons>
     <ion-content overflow-scroll="true" padding="true" class="has-header">
-        
+        <ion-refresher
+            pulling-text="Loading..."
+            on-refresh="ctrl.refresh()">
+        </ion-refresher>
+        <ion-item class="item-thumbnail-left" collection-repeat="offer in ctrl.offers">
+            <img src="img/iROMlN6TdCz3jw7fDmmI_a155164_full_0.jpg">
+            <h2>{{ offer.title }}</h2>
+            <p>{{ offer.year }} year, {{ offer.mileage }} km, {{ offer.fuel }}</p>
+        </ion-item>
     </ion-content>
 </ion-view>

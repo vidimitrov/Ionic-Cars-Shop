@@ -6,22 +6,75 @@ angular.module('app.controllers', [])
 	
 	this.logout = function() {
 		Auth.logout();
+		$state.go('app.search');
 	};
 }])
   
-.controller('searchCtrl', function() {
-
-})
+.controller('searchCtrl', ['$state', 'OffersResource', function($state, OffersResource) {
+	var self = this;
+	this.params = {
+		make: '',
+		model: '',
+		firstRegistration: 0,
+		priceUpTo: 0,
+		mileageUpTo: 0,
+		fuelType: '',
+		country: ''
+	};
+	
+	this.makes = ['Audi', 'BMW', 'Citroen', 'Peugeot'];
+	this.models = [{
+		make: 'Audi',
+		models: ['A3', 'A4', 'A6', 'TT']
+	}, {
+		make: 'BMW',
+		models: ['120', '120d', '320', '520']
+	}];
+	this.years = [1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016];
+	this.fuelTypes = ['Diesel', 'Petrol', 'Electric', 'Hybrid'];
+	this.countries = ['Germany', 'Holand', 'Bulgaria', 'England', 'Finland'];
+	
+	this.search = function () {
+		OffersResource.setParams(self.params);
+		$state.go('app.results');
+	};
+}])
    
-.controller('resultsCtrl', function() {
+.controller('resultsCtrl', ['$state', '$scope', 'OffersResource', function($state, $scope, OffersResource) {
+	var self = this;
+	
+	this.refresh = function () {
+		OffersResource.query()
+			.then(function (offers) {
+				self.offers = offers.map(function (offer) {
+					return offer._serverData;
+				});
+				$scope.$broadcast('scroll.refreshComplete');
+			});
+	};
+	
+	this.refresh();
+}])
 
-})
+.controller('offersCtrl', ['$scope', 'OffersResource', 'Auth', function($scope, OffersResource, Auth) {
+	var self = this;
+	
+	this.refresh = function () {
+		var params = { owner: Auth.getCurrentUser() };
+		
+		OffersResource.query(params)
+		.then(function (offers) {
+			self.offers = offers.map(function (offer) {
+				return offer._serverData;
+			});
+			$scope.$broadcast('scroll.refreshComplete');
+		});
+	};
+	
+	this.refresh();
+}])
 
-.controller('offersCtrl', function() {
-
-})
-
-.controller('createOfferCtrl', ['$state', 'OffersResource', function($state, OffersResource) {
+.controller('createOfferCtrl', ['$state', 'OffersResource', 'Auth', function($state, OffersResource, Auth) {
 	this.offer = {
 		title: '',
 		description: '',
@@ -31,7 +84,8 @@ angular.module('app.controllers', [])
 		price: 0,
 		mileage: 0,
 		fuel: '',
-		country: ''
+		country: '',
+		owner: Auth.getCurrentUser()
 	};
 	
 	this.makes = ['Audi', 'BMW', 'Citroen', 'Peugeot'];

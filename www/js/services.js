@@ -89,9 +89,61 @@ angular.module('app.services', [])
 }])
 
 .factory('OffersResource', ['$q', function ($q) {
+	var self = this;
+	this.params = {};
 	
-	function query () {
+	function query (params) {
+		params = params || self.params;
+		self.params = params;
 		
+		var deferred = $q.defer();
+		var Offer = Parse.Object.extend('Offer');
+		var query = new Parse.Query(Offer);
+		
+		self.params = params;
+		
+		if (params.owner) {
+			query.equalTo("owner", params.owner);
+		}
+		
+		if (params.make) {
+			query.equalTo("make", params.make);
+		}
+		
+		if (params.model) {
+			query.equalTo("model", params.model);
+		}
+		
+		if (params.firstRegistration) {
+			query.greaterThanOrEqualTo("year", params.firstRegistration);
+		}
+		
+		if (params.priceUpTo) {
+			query.greaterThanOrEqualTo("price", params.priceUpTo);
+		}
+		
+		if (params.mileageUpTo) {
+			query.greaterThanOrEqualTo("mileage", params.mileageUpTo);
+		}
+		
+		if (params.fuel) {
+			query.equalTo("fuel", params.fuel);
+		}
+		
+		if (params.country) {
+			query.equalTo("country", params.country);
+		}
+		
+		query.find({
+			success: function(results) {
+				deferred.resolve(results);
+			},
+			error: function(error) {
+				deferred.reject(error);				
+			}
+		});
+		
+		return deferred.promise;
 	}
 	
 	function create (offerData) {
@@ -111,6 +163,7 @@ angular.module('app.services', [])
 		offer.set('mileage', offerData.mileage);
 		offer.set('fuel', offerData.fuel);
 		offer.set('country', offerData.country);
+		offer.set('owner', offerData.owner);
 		
 		offer.save(null, {
 			success: function (savedOffer) {
@@ -124,9 +177,14 @@ angular.module('app.services', [])
 		return deferred.promise;
 	}
 	
+	function setParams (params) {
+		self.params = params;
+	}
+	
 	return {
 		query: query,
-		create: create
+		create: create,
+		setParams: setParams
 	};
 	
 }]);

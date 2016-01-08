@@ -19,7 +19,7 @@ angular.module('app.routes', [])
       views: {
         'app': {
           templateUrl: 'templates/search.html',
-          controller: 'searchCtrl'
+          controller: 'searchCtrl as ctrl'
         }
       }
     })
@@ -29,7 +29,7 @@ angular.module('app.routes', [])
       views: {
         'app': {
           templateUrl: 'templates/results.html',
-          controller: 'resultsCtrl'
+          controller: 'resultsCtrl as ctrl'
         }
       }
     })
@@ -39,7 +39,7 @@ angular.module('app.routes', [])
       views: {
         'app': {
           templateUrl: 'templates/offers.html',
-          controller: 'offersCtrl'
+          controller: 'offersCtrl as ctrl'
         }
       }
     })

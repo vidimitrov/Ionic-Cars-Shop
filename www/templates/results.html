@@ -1,46 +1,13 @@
 <ion-view title="Results">
     <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <div class="list card">
-            <div class="item item-divider">Audi A4 2016 1.9 131hp</div>
-            <div class="item item-body">
-                <a style="display: inline-block; width: 100%; height: auto;" href="#/details">
-                    <img src="img/W8fWTGyVSehzKTm2aKWN_a155164_full_0.jpg" width="100%" height="auto">
-                </a>
-                <div>
-                    <p>The car is just
-                        <strong>perfect</strong>
-                    </p>
-                </div>
-            </div>
-            <div class="item item-divider">added on 25.12.2015</div>
-        </div>
-        <div class="list card">
-            <div class="item item-divider">Audi A4 2016 1.9 131hp</div>
-            <div class="item item-body">
-                <a style="display: inline-block; width: 100%; height: auto;" href="#/details">
-                    <img src="img/W8fWTGyVSehzKTm2aKWN_a155164_full_0.jpg" width="100%" height="auto">
-                </a>
-                <div>
-                    <p>The car is just
-                        <strong>perfect</strong>
-                    </p>
-                </div>
-            </div>
-            <div class="item item-divider">added on 25.12.2015</div>
-        </div>
-        <div class="list card">
-            <div class="item item-divider">Audi A4 2016 1.9 131hp</div>
-            <div class="item item-body">
-                <a style="display: inline-block; width: 100%; height: auto;" href="#/details">
-                    <img src="img/W8fWTGyVSehzKTm2aKWN_a155164_full_0.jpg" width="100%" height="auto">
-                </a>
-                <div>
-                    <p>The car is just
-                        <strong>perfect</strong>
-                    </p>
-                </div>
-            </div>
-            <div class="item item-divider">added on 25.12.2015</div>
-        </div>
+        <ion-refresher
+            pulling-text="Loading..."
+            on-refresh="ctrl.refresh()">
+        </ion-refresher>
+        <ion-item class="item-thumbnail-left" collection-repeat="offer in ctrl.offers">
+            <img src="img/iROMlN6TdCz3jw7fDmmI_a155164_full_0.jpg">
+            <h2>{{ offer.title }}</h2>
+            <p>{{ offer.year }} year, {{ offer.mileage }} km, {{ offer.fuel }}</p>
+        </ion-item>
     </ion-content>
 </ion-view>
